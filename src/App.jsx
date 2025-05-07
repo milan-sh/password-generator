@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import "./App.css";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
   const [isNumberInclude, setIsNumbersInclude] = useState(false)
   const [isCharInclude, setIsCharInclude] = useState(false)
   const selected = useRef(null)
+  const noatify = ()=> toast.success("Copied successfully")
 
   function lengthChange(event){
     setLength(event.target.value)
@@ -42,7 +44,7 @@ function App() {
     selected.current?.setSelectionRange(0, length)
     //copying password to clipboard
     window.navigator.clipboard.writeText(password)
-    alert(`password copied to clipboard: ${password}`)
+    noatify();
   }
 
   return (
@@ -61,6 +63,7 @@ function App() {
           <button className="bg-blue-600 py-3 px-4 rounded-r-lg"
           onClick={copyPassword}
           >Copy</button>
+          <ToastContainer/>
         </div>
         <div className="functions flex md:flex-row flex-col items-start md:items-center flex-wrap gap-3">
           <div className="flex items-center justify- gap-1 text-[#ec7505]">
